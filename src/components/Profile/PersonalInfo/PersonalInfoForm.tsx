@@ -1,0 +1,78 @@
+import React from 'react';
+import { User, Mail, Phone, MapPin } from 'lucide-react';
+import { FormInput } from './FormInput';
+
+interface PersonalInfoFormProps {
+  formData: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    address: string;
+  };
+  onChange: (field: string, value: string) => void;
+  onSubmit: (e: React.FormEvent) => void;
+}
+
+export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
+  formData,
+  onChange,
+  onSubmit,
+}) => {
+  return (
+    <form onSubmit={onSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <FormInput
+          label="Имя"
+          icon={User}
+          value={formData.firstName}
+          onChange={(value) => onChange('firstName', value)}
+        />
+        <FormInput
+          label="Фамилия"
+          icon={User}
+          value={formData.lastName}
+          onChange={(value) => onChange('lastName', value)}
+        />
+      </div>
+
+      <FormInput
+        label="Email"
+        icon={Mail}
+        type="email"
+        value={formData.email}
+        onChange={(value) => onChange('email', value)}
+      />
+
+      <FormInput
+        label="Номер телефона"
+        icon={Phone}
+        type="tel"
+        value={formData.phone}
+        onChange={(value) => onChange('phone', value)}
+      />
+
+      <FormInput
+        label="Адрес доставки"
+        icon={MapPin}
+        value={formData.address}
+        onChange={(value) => onChange('address', value)}
+      />
+
+      <div className="flex justify-end space-x-4">
+        <button
+          type="button"
+          className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+        >
+          Отменить
+        </button>
+        <button
+          type="submit"
+          className="px-6 py-2 bg-[#E6E9F2] text-gray-900 rounded-lg hover:bg-[#d8dbe4]"
+        >
+          Сохранить
+        </button>
+      </div>
+    </form>
+  );
+};
