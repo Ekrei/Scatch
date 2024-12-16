@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-bold mb-4">Магазин канцтоваров «Scratch»</h3>
+            <h3 className="text-lg font-bold mb-4">Магазин канцтоваров «Scatch»</h3>
             <div className="space-y-2">
               <p className="flex items-center text-gray-600">
                 <Phone size={16} className="mr-2" />
@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
               </p>
               <p className="flex items-center text-gray-600">
                 <Mail size={16} className="mr-2" />
-                info@scratch.ru
+                info@scatch.ru
               </p>
               <p className="flex items-center text-gray-600">
                 <MapPin size={16} className="mr-2" />
@@ -48,14 +48,14 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Мы в соцсетях</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-gray-900">VKontakte</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900">VK</a></li>
               <li><a href="#" className="text-gray-600 hover:text-gray-900">Telegram</a></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-300 mt-8 pt-8 text-center text-gray-600">
-          <p>© 2024 Scratch. Все права защищены</p>
+          <p>© 2024 Scatch. Все права защищены</p>
         </div>
       </div>
     </footer>
