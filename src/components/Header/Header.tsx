@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="Scatch" className="h-10" />
+            <img src="src/components/Header/logo.png" alt="Scatch" className="h-10" />
           </Link>
           
           <div className="flex-1 max-w-xl mx-8">

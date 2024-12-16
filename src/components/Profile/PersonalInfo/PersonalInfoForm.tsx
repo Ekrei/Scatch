@@ -1,16 +1,11 @@
 import React from 'react';
 import { User, Mail, Phone, MapPin } from 'lucide-react';
 import { FormInput } from './FormInput';
+import type { PersonalInfoData } from './types';
 
 interface PersonalInfoFormProps {
-  formData: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    address: string;
-  };
-  onChange: (field: string, value: string) => void;
+  formData: PersonalInfoData;
+  onChange: (field: keyof PersonalInfoData, value: string) => void;
   onSubmit: (e: React.FormEvent) => void;
 }
 
@@ -45,7 +40,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
       />
 
       <FormInput
-        label="Номер телефона"
+        label="Телефон"
         icon={Phone}
         type="tel"
         value={formData.phone}
