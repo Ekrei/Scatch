@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
+import banner from '../../components/HomePage/advert.png'
 
 export const HeroBanner: React.FC = () => {
   return (
@@ -13,7 +14,8 @@ export const HeroBanner: React.FC = () => {
           </button>
         </div>
         <img 
-          src="https://placehold.co/500x500?text=Office+Chair"
+          // src="https://placehold.co/500x500?text=Office+Chair"
+          src={banner}
           alt="Office Chair"
           className="w-64 h-64 object-contain"
         />
