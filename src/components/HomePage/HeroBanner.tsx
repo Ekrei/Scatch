@@ -1,24 +1,20 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
-import banner from '../../components/HomePage/advert.png'
+import advert from '../../components/HomePage/advert.png';
 
 export const HeroBanner: React.FC = () => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-3xl font-bold mb-4">СКИДКИ</h2>
-          <h3 className="text-xl mb-4">НА МЕБЕЛЬ И ТЕХНИКУ<br />ДЛЯ ОФИСА</h3>
-          <button className="bg-gray-200 px-6 py-2 rounded-full flex items-center">
-            Подробнее <ChevronRight size={20} className="ml-2" />
+    <div className="bg-white rounded-lg shadow-md mb-8 overflow-hidden">
+      <div 
+        className="relative w-full aspect-[16/9] bg-cover bg-center flex items-end"
+        style={{ backgroundImage: `url(${advert})` }}
+      >
+        <div className="w-full p-8 md:p-12 lg:p-16">
+          <button className="bg-gray-200/90 backdrop-blur px-8 py-4 rounded-full flex items-center hover:bg-gray-300/90 transition-colors text-lg md:text-xl">
+            Подробнее
+            <ChevronRight className="ml-2 h-5 w-5 md:h-6 md:w-6" />
           </button>
         </div>
-        <img 
-          // src="https://placehold.co/500x500?text=Office+Chair"
-          src={banner}
-          alt="Office Chair"
-          className="w-64 h-64 object-contain"
-        />
       </div>
     </div>
   );

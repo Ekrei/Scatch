@@ -1,8 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Heart, ShoppingCart } from 'lucide-react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/slices/cartSlice';
+import { addToWishlist, removeFromWishlist } from '../store/slices/wishlistSlice';
+import type { RootState } from '../store/store';
 
 const MOCK_PRODUCT = {
   id: '1',
@@ -26,6 +28,21 @@ export const ProductPage: React.FC = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [selectedImage, setSelectedImage] = React.useState(0);
+
+  // Проверяем, находится ли товар в избранном
+  const isInWishlist = useSelector((state: RootState) => 
+    state.wishlist.items.some(item => item.id === MOCK_PRODUCT.id)
+  );
+
+  // Обработчик добавления/удаления из избранного
+  const handleWishlistToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isInWishlist) {
+      dispatch(removeFromWishlist(MOCK_PRODUCT.id));
+    } else {
+      dispatch(addToWishlist(MOCK_PRODUCT));
+    }
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -72,8 +89,18 @@ export const ProductPage: React.FC = () => {
               <ShoppingCart size={20} />
               <span>В корзину</span>
             </button>
-            <button className="border border-gray-300 p-3 rounded-lg hover:bg-gray-50">
-              <Heart size={20} />
+            <button 
+              onClick={handleWishlistToggle}
+              className={`border p-3 rounded-lg transition-colors ${
+                isInWishlist 
+                  ? 'bg-red-50 border-red-200 text-red-500' 
+                  : 'border-gray-300 hover:bg-gray-50'
+              }`}
+            >
+              <Heart 
+                size={20} 
+                className={isInWishlist ? 'fill-current' : ''} 
+              />
             </button>
           </div>
         </div>

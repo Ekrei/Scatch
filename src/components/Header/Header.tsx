@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, ShoppingCart, Heart, User } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import logo from './logo.png';
 
 export const Header: React.FC = () => {
   const cartItemsCount = useSelector((state: RootState) => 
@@ -14,7 +15,12 @@ export const Header: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <img src="src/components/Header/logo.png" alt="Scatch" className="h-10" />
+            <img 
+              src={logo} 
+              alt="Scatch" 
+              className="h-12 w-auto object-contain"
+              style={{ maxWidth: '291px' }}
+            />
           </Link>
           
           <div className="flex-1 max-w-xl mx-8">
