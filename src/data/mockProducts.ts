@@ -43,7 +43,7 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: '4',
-    title: 'Карандаш чернографитный',
+    title: 'Карандаш',
     price: 35,
     oldPrice: 45,
     description: 'Чернографитный карандаш твердости HB',

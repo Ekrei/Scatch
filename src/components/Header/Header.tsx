@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { NotificationBell } from '../Notifications/NotificationBell';
 import { RootState } from '../../store/store';
+import logo from '../Header/logo.png';
 
 export const Header: React.FC = () => {
   const { user } = useAuth();
@@ -25,8 +26,8 @@ export const Header: React.FC = () => {
     <header className="bg-[#E6E9F2] py-4">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <img src="logo.png" alt="Scatch" className="h-12 w-auto" />
+          <Link to="/" className="flex items-center h-full">
+           <img src={logo} alt="Scatch" className="h-16 w-auto" />
           </Link>
           <nav className="flex items-center space-x-6">
             <Link 
