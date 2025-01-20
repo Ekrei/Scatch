@@ -1,6 +1,22 @@
+/**
+ * @module FormInput
+ * @description Компонент поля ввода с поддержкой валидации
+ */
+
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 
+/**
+ * @interface FormInputProps
+ * @property {string} id - Идентификатор поля
+ * @property {string} label - Текст метки поля
+ * @property {string} type - Тип поля ввода
+ * @property {string} value - Значение поля
+ * @property {function} onChange - Обработчик изменения значения
+ * @property {string} [placeholder] - Placeholder текст
+ * @property {string} [error] - Текст ошибки
+ * @property {boolean} [required] - Обязательное поле
+ */
 interface FormInputProps {
   id: string;
   label: string;
@@ -12,6 +28,22 @@ interface FormInputProps {
   required?: boolean;
 }
 
+/**
+ * Компонент поля ввода с поддержкой валидации и показа/скрытия пароля
+ * @component
+ * @example
+ * ```tsx
+ * <FormInput
+ *   id="email"
+ *   label="Email"
+ *   type="email"
+ *   value={email}
+ *   onChange={handleChange}
+ *   error={errors.email}
+ *   required
+ * />
+ * ```
+ */
 export const FormInput: React.FC<FormInputProps> = ({
   id,
   label,

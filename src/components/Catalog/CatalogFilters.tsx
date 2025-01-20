@@ -1,11 +1,29 @@
+/**
+ * @module CatalogFilters
+ * @description Компонент фильтров для каталога товаров
+ */
+
 import React from 'react';
 import { Filter } from 'lucide-react';
 
+/**
+ * @interface FilterOption
+ * @property {string} id - Идентификатор опции фильтра
+ * @property {string} label - Отображаемое название опции
+ */
 interface FilterOption {
   id: string;
   label: string;
 }
 
+/**
+ * @interface CatalogFiltersProps
+ * @property {FilterOption[]} categories - Список категорий для фильтрации
+ * @property {string | null} selectedCategory - ID выбранной категории
+ * @property {function} onCategoryChange - Обработчик изменения категории
+ * @property {{ min: number; max: number }} priceRange - Диапазон цен
+ * @property {function} onPriceRangeChange - Обработчик изменения диапазона цен
+ */
 interface CatalogFiltersProps {
   categories: FilterOption[];
   selectedCategory: string | null;
@@ -14,6 +32,20 @@ interface CatalogFiltersProps {
   onPriceRangeChange: (range: { min: number; max: number }) => void;
 }
 
+/**
+ * Компонент фильтров каталога
+ * @component
+ * @example
+ * ```tsx
+ * <CatalogFilters
+ *   categories={[{ id: '1', label: 'Категория 1' }]}
+ *   selectedCategory={null}
+ *   onCategoryChange={(category) => console.log(category)}
+ *   priceRange={{ min: 0, max: 1000 }}
+ *   onPriceRangeChange={(range) => console.log(range)}
+ * />
+ * ```
+ */
 export const CatalogFilters: React.FC<CatalogFiltersProps> = ({
   categories,
   selectedCategory,

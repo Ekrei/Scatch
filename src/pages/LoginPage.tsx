@@ -1,19 +1,64 @@
 import React, { useState } from 'react';
+import { useAuth } from '../lib/supabase/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../components/Auth/AuthLayout';
 import { FormInput } from '../components/Auth/FormInput';
 
 export const LoginPage: React.FC = () => {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.email) {
+      newErrors.email = 'Email обязателен';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Некорректный email адрес';
+    }
+    
+    if (!formData.password) {
+      newErrors.password = 'Пароль обязателен';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Пароль должен быть не менее 6 символов';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login attempt:', formData);
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await login(formData.email, formData.password);
+      navigate('/profile');
+    } catch (error) {
+      const err = error as Error;
+      if (err.message.includes('Invalid login credentials')) {
+        setErrors({
+          password: 'Неверный email или пароль'
+        });
+      } else {
+        setErrors({
+          submit: 'Произошла ошибка при входе. Попробуйте позже.'
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +85,7 @@ export const LoginPage: React.FC = () => {
           onChange={handleChange}
           error={errors.email}
           placeholder="example@email.com"
+          required
         />
 
         <FormInput
@@ -50,6 +96,7 @@ export const LoginPage: React.FC = () => {
           onChange={handleChange}
           error={errors.password}
           placeholder="Введите пароль"
+          required
         />
 
         <div className="flex items-center justify-between">
@@ -71,11 +118,16 @@ export const LoginPage: React.FC = () => {
           </div>
         </div>
 
+        {errors.submit && (
+          <p className="text-sm text-red-600">{errors.submit}</p>
+        )}
+
         <button
           type="submit"
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          disabled={isSubmitting}
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Войти
+          {isSubmitting ? 'Вход...' : 'Войти'}
         </button>
       </form>
     </AuthLayout>

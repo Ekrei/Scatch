@@ -1,7 +1,20 @@
+/**
+ * @module AuthLayout
+ * @description Компонент разметки для страниц аутентификации
+ */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LogIn } from 'lucide-react';
 
+/**
+ * @interface AuthLayoutProps
+ * @property {React.ReactNode} children - Дочерние элементы (форма)
+ * @property {string} title - Заголовок страницы
+ * @property {string} subtitle - Подзаголовок
+ * @property {string} linkText - Текст ссылки
+ * @property {string} linkTo - Путь для перехода
+ */
 interface AuthLayoutProps {
   children: React.ReactNode;
   title: string;
@@ -10,6 +23,21 @@ interface AuthLayoutProps {
   linkTo: string;
 }
 
+/**
+ * Компонент разметки для страниц аутентификации
+ * @component
+ * @example
+ * ```tsx
+ * <AuthLayout
+ *   title="Вход"
+ *   subtitle="Нет аккаунта?"
+ *   linkText="Зарегистрироваться"
+ *   linkTo="/register"
+ * >
+ *   <LoginForm />
+ * </AuthLayout>
+ * ```
+ */
 export const AuthLayout: React.FC<AuthLayoutProps> = ({
   children,
   title,

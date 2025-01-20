@@ -1,3 +1,8 @@
+/**
+ * @module ProductCard
+ * @description Компонент карточки товара для отображения в каталоге и списках
+ */
+
 import React from 'react';
 import { Heart } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,23 +11,53 @@ import { addToWishlist, removeFromWishlist } from '../../store/slices/wishlistSl
 import type { Product } from '../../types/product';
 import type { RootState } from '../../store/store';
 
+/**
+ * @interface ProductCardProps
+ * @property {Product} product - Данные о товаре
+ * @property {function} [onProductClick] - Обработчик клика по карточке
+ */
 interface ProductCardProps {
   product: Product;
   onProductClick?: (id: string) => void;
 }
 
+/**
+ * Компонент карточки товара
+ * @component
+ * @example
+ * ```tsx
+ * <ProductCard
+ *   product={{
+ *     id: '1',
+ *     title: 'Товар',
+ *     price: 100,
+ *     images: ['url'],
+ *     // ... другие свойства
+ *   }}
+ *   onProductClick={(id) => navigate(`/product/${id}`)}
+ * />
+ * ```
+ */
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) => {
   const dispatch = useDispatch();
   const isInWishlist = useSelector((state: RootState) => 
     state.wishlist.items.some(item => item.id === product.id)
   );
 
+  /**
+   * Обработчик добавления в корзину
+   * @param {React.MouseEvent} e - Событие клика
+   */
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(addToCart(product));
   };
 
+  /**
+   * Обработчик добавления/удаления из избранного
+   * @param {React.MouseEvent} e - Событие клика
+   */
   const handleWishlistToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();

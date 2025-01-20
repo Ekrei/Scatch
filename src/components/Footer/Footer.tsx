@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, GamepadIcon } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -41,6 +41,10 @@ export const Footer: React.FC = () => {
               <li><Link to="/catalog" className="text-gray-600 hover:text-gray-900">Каталог</Link></li>
               <li><Link to="/sales" className="text-gray-600 hover:text-gray-900">Акции</Link></li>
               <li><Link to="/loyalty" className="text-gray-600 hover:text-gray-900">Программа лояльности</Link></li>
+              <li><Link to="/games" className="text-gray-600 hover:text-gray-900 flex items-center">
+                <GamepadIcon size={16} className="mr-2" />
+                Игры
+              </Link></li>
               <li><Link to="/faq" className="text-gray-600 hover:text-gray-900">Вопрос-ответ</Link></li>
             </ul>
           </div>
