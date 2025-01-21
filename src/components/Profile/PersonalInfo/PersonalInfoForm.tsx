@@ -22,12 +22,14 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
           icon={User}
           value={formData.firstName}
           onChange={(value) => onChange('firstName', value)}
+          isSecure
         />
         <FormInput
           label="Фамилия"
           icon={User}
           value={formData.lastName}
           onChange={(value) => onChange('lastName', value)}
+          isSecure
         />
       </div>
 
@@ -37,6 +39,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         type="email"
         value={formData.email}
         onChange={(value) => onChange('email', value)}
+        isSecure
       />
 
       <FormInput
@@ -45,6 +48,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         type="tel"
         value={formData.phone}
         onChange={(value) => onChange('phone', value)}
+        isSecure
       />
 
       <FormInput
@@ -52,6 +56,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         icon={MapPin}
         value={formData.address}
         onChange={(value) => onChange('address', value)}
+        isSecure
       />
 
       <div className="flex justify-end space-x-4">

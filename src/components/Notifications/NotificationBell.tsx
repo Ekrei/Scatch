@@ -45,7 +45,10 @@ export const NotificationBell: React.FC = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-50">
+        <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-50 
+          sm:w-80 sm:right-0 
+          max-sm:fixed max-sm:w-[calc(100%-2rem)] max-sm:right-4 max-sm:left-4 max-sm:mt-4"
+        >
           <div className="p-4 border-b border-gray-100">
             <h3 className="font-semibold">Уведомления</h3>
           </div>
